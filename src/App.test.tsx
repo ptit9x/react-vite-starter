@@ -1,21 +1,12 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import App from './App'
 
 describe('App', () => {
-    it('renders the App component and handles click', () => {
+    it('renders the App component and navigates to login by default', () => {
         render(<App />)
 
-        // Verify the initial text
-        expect(screen.getByText(/Vite \+ React/i)).toBeInTheDocument()
-
-        // Get the button and check initial state
-        const button = screen.getByRole('button', { name: /count is 0/i })
-        expect(button).toBeInTheDocument()
-
-        // Simulate a click event
-        fireEvent.click(button)
-
-        // Verify state update
-        expect(screen.getByRole('button', { name: /count is 1/i })).toBeInTheDocument()
+        // Verify the login page is rendered
+        expect(screen.getByText(/Welcome back/i, { selector: 'h1' })).toBeInTheDocument()
+        expect(screen.getByRole('button', { name: /Sign In/i })).toBeInTheDocument()
     })
 })
