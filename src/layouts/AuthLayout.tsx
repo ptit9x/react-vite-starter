@@ -1,10 +1,16 @@
-import { Link, Outlet, useLocation } from "react-router-dom"
+import { Link, Outlet, useLocation, Navigate } from "react-router-dom"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 
 export default function AuthLayout() {
     const location = useLocation()
     const isLogin = location.pathname === "/login" || location.pathname === "/"
+
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        return <Navigate to="/dashboard" replace />;
+    }
 
     return (
         <div className="container relative min-h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">

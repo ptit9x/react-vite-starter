@@ -25,7 +25,7 @@ api.interceptors.response.use(
     },
     (error: AxiosError) => {
         // Handle global errors here
-        const errorMessage = (error.response?.data as any)?.message || error.message || 'An unexpected error occurred';
+        const errorMessage = (error.response?.data as { message?: string })?.message || error.message || 'An unexpected error occurred';
         toast.error(errorMessage);
 
         if (error.response?.status === 401) {
